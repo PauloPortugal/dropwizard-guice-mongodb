@@ -1,0 +1,8 @@
+logging:
+  level: INFO
+  loggers:
+    com.pmonteiro: DEBUG
+
+swagger:
+  includeSwaggerResource: true
+  resourcePackage: com.pmonteiro.dropwizard.resources
