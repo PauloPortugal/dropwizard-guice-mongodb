@@ -3,7 +3,7 @@ package com.pmonteiro.dropwizard;
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
 import com.google.inject.persist.jpa.JpaPersistModule;
-import com.pmonteiro.dropwizard.db.DatabaseConfiguration;
+import com.pmonteiro.dropwizard.db.MongoConfiguration;
 import io.dropwizard.setup.Environment;
 
 import java.util.Properties;
@@ -26,14 +26,13 @@ public class AppModule extends AbstractModule {
         install(jpaModule(configuration.getDatabaseConfiguration()));
     }
 
-    private Module jpaModule(DatabaseConfiguration databaseConfiguration ) {
+    private Module jpaModule(MongoConfiguration databaseConfiguration ) {
         final Properties properties = new Properties();
-        properties.put("eclipselink.target-database", "org.eclipse.persistence.nosql.adapters.mongo.MongoPlatform");
-        properties.put("eclipselink.nosql.connection-spec", "org.eclipse.persistence.nosql.adapters.mongo.MongoConnectionSpec");
-        properties.put("eclipselink.logging.level", "FINEST");
-        properties.put("eclipselink.nosql.property.mongo.host", databaseConfiguration.getHost());
-        properties.put("eclipselink.nosql.property.mongo.port", databaseConfiguration.getPort());
-        properties.put("eclipselink.nosql.property.mongo.db", databaseConfiguration.getDb());
+        properties.put("hibernate.transaction.jta.platform", databaseConfiguration.getJtaPlatform());
+        properties.put("hibernate.ogm.datastore.provider", databaseConfiguration.getProvider());
+        properties.put("hibernate.ogm.datastore.host", databaseConfiguration.getHost());
+        properties.put("hibernate.ogm.datastore.database", databaseConfiguration.getDatabase());
+        properties.put("hibernate.ogm.datastore.create_database", databaseConfiguration.isCreateDatabase());
 
         final JpaPersistModule jpaModule = new JpaPersistModule("DefaultUnit");
         jpaModule.properties(properties);

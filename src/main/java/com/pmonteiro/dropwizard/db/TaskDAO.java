@@ -7,8 +7,8 @@ import com.google.inject.persist.Transactional;
 import com.pmonteiro.dropwizard.core.Task;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.Optional;
+import java.util.UUID;
 
 @Transactional
 public class TaskDAO extends BaseDAO {
@@ -18,15 +18,7 @@ public class TaskDAO extends BaseDAO {
         super(entityManager);
     }
 
-    public Optional<Task> findById(final Long id) {
+    public Optional<Task> findById(final UUID id) {
         return findById(Task.class, id);
-    }
-
-    public Optional<Integer> update(final Task task, Long id) {
-        Query query = getEntityManager()
-                .createQuery("UPDATE Task SET description=:description WHERE id = :id")
-                .setParameter("description", task.getDescription())
-                .setParameter("id", id);
-        return Optional.of(query.executeUpdate());
     }
 }

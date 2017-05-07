@@ -1,24 +1,22 @@
 package com.pmonteiro.dropwizard.core;
 
 import io.swagger.annotations.ApiModelProperty;
-import org.eclipse.persistence.nosql.annotations.Field;
+import org.bson.types.ObjectId;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable {
+abstract class AbstractEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Field(name = "_id")
-    @ApiModelProperty(example = "1")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "_id")
+    @ApiModelProperty(example = "3d7a2dc5-e8b3-48c2-8e3d-b1ed7882a082")
+    private UUID id;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 }

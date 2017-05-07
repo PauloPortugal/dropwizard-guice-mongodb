@@ -3,11 +3,12 @@ logging:
   loggers:
     com.pmonteiro: DEBUG
 
-database:
-  host: localhost
-  port: 12345
-  db: inmemory
-  collection: tasks
+mongo:
+  provider: FONGO
+  jta.platform: org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform
+  host: 127.0.0.1:27017
+  database: test
+  create.database: true
 
 swagger:
   includeSwaggerResource: true

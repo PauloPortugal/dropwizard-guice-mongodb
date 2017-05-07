@@ -6,7 +6,6 @@ import com.google.inject.persist.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-
 @Transactional
 public abstract class BaseDAO<T> {
     private final Provider<EntityManager> entityManager;

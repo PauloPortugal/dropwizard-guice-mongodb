@@ -75,7 +75,7 @@ Returns task by Id. If it does not exist it will return a HTTP 404
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**taskId**  <br>*required*|taskId|integer(int64)|
+|**Path**|**taskId**  <br>*required*|taskId|string(uuid)|
 
 
 #### Responses
@@ -106,8 +106,8 @@ Updates a task description if available in the database
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**taskId**  <br>*required*|taskId|integer(int64)|
-|**Body**|**body**  <br>*required*|payload|[Task Entity](#task-entity)|
+|**Path**|**taskId**  <br>*required*|taskId|string(uuid)|
+|**Body**|**body**  <br>*required*|payload|[A new task](#a-new-task)|
 
 
 #### Responses
@@ -143,7 +143,7 @@ Deletes a if available in the database
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**taskId**  <br>*required*|taskId|integer(int64)|
+|**Path**|**taskId**  <br>*required*|taskId|string(uuid)|
 
 
 #### Responses

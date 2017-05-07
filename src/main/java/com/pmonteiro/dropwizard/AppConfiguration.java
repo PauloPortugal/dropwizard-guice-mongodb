@@ -1,7 +1,7 @@
 package com.pmonteiro.dropwizard;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.pmonteiro.dropwizard.db.DatabaseConfiguration;
+import com.pmonteiro.dropwizard.db.MongoConfiguration;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 import javax.validation.Valid;
@@ -9,8 +9,8 @@ import javax.validation.Valid;
 public class AppConfiguration extends io.dropwizard.Configuration {
 
     @Valid
-    @JsonProperty("database")
-    private DatabaseConfiguration databaseConfiguration;
+    @JsonProperty("mongo")
+    private MongoConfiguration databaseConfiguration;
 
     @JsonProperty("swagger")
     private SwaggerBundleConfiguration swaggerBundleConfiguration;
@@ -19,7 +19,7 @@ public class AppConfiguration extends io.dropwizard.Configuration {
         return swaggerBundleConfiguration;
     }
 
-    public DatabaseConfiguration getDatabaseConfiguration() {
+    public MongoConfiguration getDatabaseConfiguration() {
         return databaseConfiguration;
     }
 }

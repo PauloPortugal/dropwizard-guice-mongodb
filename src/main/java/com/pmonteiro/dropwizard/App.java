@@ -2,7 +2,7 @@ package com.pmonteiro.dropwizard;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.persist.PersistService;
+import com.pmonteiro.dropwizard.db.PersistInitialiser;
 import com.pmonteiro.dropwizard.resources.TasksResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -29,14 +29,13 @@ public class App extends Application<AppConfiguration> {
                 return configuration.getSwaggerBundleConfiguration();
             }
         });
-
     }
 
     @Override
     public void run(final AppConfiguration configuration, final Environment environment) {
         final Injector injector = Guice.createInjector(new AppModule(configuration, environment));
         environment.jersey().register(injector.getInstance(TasksResource.class));
-        injector.getInstance(PersistService.class).start();
+        injector.getInstance(PersistInitialiser.class);
     }
 
 }

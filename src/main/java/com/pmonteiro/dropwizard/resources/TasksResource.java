@@ -11,6 +11,7 @@ import io.swagger.annotations.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.UUID;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.CREATED;
@@ -48,7 +49,7 @@ public class TasksResource {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "", response = Task.class),
         @ApiResponse(code = 404, message = "Not Found")})
-    public Response getTask(@ApiParam(value = "taskId", example = "1") @PathParam("taskId") Long id) {
+    public Response getTask(@ApiParam(value = "taskId", example = "9781337a-a4f6-4ee9-b7b2-2c001d8d457d") @PathParam("taskId") UUID id) {
         return dao.findById(id)
                 .map(task -> ok().entity(task).build())
                 .orElse(status(NOT_FOUND.getStatusCode()).build());
@@ -72,17 +73,20 @@ public class TasksResource {
     @Path("{taskId}")
     @Timed
     @Consumes(APPLICATION_JSON)
+    @Transactional
     @ApiOperation(
             value = "Updates task by id",
             notes = "Updates a task description if available in the database")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Updated"),
             @ApiResponse(code = 404, message = "Not Found")})
-    public Response update(@ApiParam(value = "taskId", example = "1") @PathParam("taskId") Long id,
-                           @ApiParam(value = "payload", required = true) Task task) {
-        return dao.update(task, id)
-                .filter(updatedRows ->  updatedRows == 1)
-                .map(updated -> ok().build())
+    public Response update(@ApiParam(value = "taskId", example = "9781337a-a4f6-4ee9-b7b2-2c001d8d457d") @PathParam("taskId") UUID id,
+                           @ApiParam(value = "payload", required = true) TaskApi payload) {
+        return dao.findById(id)
+                .map(task -> {
+                    task.setDescription(payload.getDescription());
+                    return ok().entity(task).build();
+                })
                 .orElse(status(NOT_FOUND.getStatusCode()).build());
     }
 
@@ -98,7 +102,7 @@ public class TasksResource {
             @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 404, message = "Not Found")})
 
-    public Response delete(@ApiParam(value = "taskId", example = "1") @PathParam("taskId") Long id) {
+    public Response delete(@ApiParam(value = "taskId", example = "9781337a-a4f6-4ee9-b7b2-2c001d8d457d") @PathParam("taskId") UUID id) {
         return dao.findById(id)
                 .map(task -> {
                     dao.remove(task);
