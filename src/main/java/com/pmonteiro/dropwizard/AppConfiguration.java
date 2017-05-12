@@ -15,11 +15,11 @@ public class AppConfiguration extends io.dropwizard.Configuration {
     @JsonProperty("swagger")
     private SwaggerBundleConfiguration swaggerBundleConfiguration;
 
-    public SwaggerBundleConfiguration getSwaggerBundleConfiguration() {
+    SwaggerBundleConfiguration getSwaggerBundleConfiguration() {
         return swaggerBundleConfiguration;
     }
 
-    public MongoConfiguration getDatabaseConfiguration() {
+    MongoConfiguration getDatabaseConfiguration() {
         return databaseConfiguration;
     }
 }
