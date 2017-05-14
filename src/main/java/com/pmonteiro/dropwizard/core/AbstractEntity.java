@@ -1,7 +1,6 @@
 package com.pmonteiro.dropwizard.core;
 
 import io.swagger.annotations.ApiModelProperty;
-import org.bson.types.ObjectId;
 
 import javax.persistence.*;
 import java.io.Serializable;
