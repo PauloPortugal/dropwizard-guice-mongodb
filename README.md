@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.png)](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.svg?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8fa8dd11746e44e89b53d1d77e57f78c)](https://www.codacy.com/app/PauloPortugal/dropwizard-guice-mongodb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PauloPortugal/dropwizard-guice-mongodb&amp;utm_campaign=Badge_Grade) 
+
 # Dropwizard Guice and MongoDB (JPA) application
 
 This is a dockerized RESTful Dropwizard application, to provide an example on how to integrate MongoDB and JPA in Dropwizard, using dependency injection.
