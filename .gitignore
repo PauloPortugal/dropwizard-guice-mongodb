@@ -4,7 +4,7 @@
 # Maven build output
 target/
 
-dropwizard-guice-jpa.iml
+dropwizard-guice-mongodb.iml
 dropwizard-guice.iml
 
 dependency-reduced-pom.xml
