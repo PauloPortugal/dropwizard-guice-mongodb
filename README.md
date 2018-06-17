@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.png)](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.svg?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8fa8dd11746e44e89b53d1d77e57f78c)](https://www.codacy.com/app/PauloPortugal/dropwizard-guice-mongodb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PauloPortugal/dropwizard-guice-mongodb&amp;utm_campaign=Badge_Grade) 
+[![Build Status](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.png)](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.svg?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8fa8dd11746e44e89b53d1d77e57f78c)](https://www.codacy.com/app/PauloPortugal/dropwizard-guice-mongodb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PauloPortugal/dropwizard-guice-mongodb&amp;utm_campaign=Badge_Grade)(https://coveralls.io/github/PauloPortugal/dropwizard-guice-mongodb?branch=master) 
 
 # Dropwizard Guice and MongoDB (JPA) application
 
@@ -18,7 +18,7 @@ The example is a simple RESTful interface to easily manage a task planner.
 How to start the DropwizardGuice application
 ---
 
-1. Run `mvn clean package` to build your application
+1. Run `mvn clean verify` to build your application
 1. Start application with `java -jar target/dropwizard-guice-1.0-SNAPSHOT-uber.jar server target/config.yml`
 1. To check that the application is running enter url `http://localhost:8080`
 1. To interact with the application using Swagger UI endpoints enter url `http://localhost:8080/swagger`
