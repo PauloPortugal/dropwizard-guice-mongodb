@@ -1,10 +1,9 @@
-[![Build Status](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.png)](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.svg?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8fa8dd11746e44e89b53d1d77e57f78c)](https://www.codacy.com/app/PauloPortugal/dropwizard-guice-mongodb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PauloPortugal/dropwizard-guice-mongodb&amp;utm_campaign=Badge_Grade)(https://coveralls.io/github/PauloPortugal/dropwizard-guice-mongodb?branch=master) 
-
+[![Build Status](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.png)](https://travis-ci.org/PauloPortugal/dropwizard-guice-jpa.svg?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8fa8dd11746e44e89b53d1d77e57f78c)](https://www.codacy.com/app/PauloPortugal/dropwizard-guice-mongodb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PauloPortugal/dropwizard-guice-mongodb&amp;utm_campaign=Badge_Grade)[![Coverage Status](https://coveralls.io/repos/github/PauloPortugal/dropwizard-guice-mongodb/badge.svg?branch=master)](https://coveralls.io/github/PauloPortugal/dropwizard-guice-mongodb?branch=master)
 # Dropwizard Guice and MongoDB (JPA) application
 
 This is a dockerized RESTful Dropwizard application, to provide an example on how to integrate MongoDB and JPA in Dropwizard, using dependency injection.
-This is using a 
-Instead of using Morphia, MongoJack or MongoDB Java driver the decision was to investigate how to 
+This is using a
+Instead of using Morphia, MongoJack or MongoDB Java driver the decision was to investigate how to
 integrate MongoDB with JPA. Please read more about [Hibernate OGM Reference Guide](https://docs.jboss.org/hibernate/stable/ogm/reference/en-US/html_single)
 The example is a simple RESTful interface to easily manage a task planner.
 
