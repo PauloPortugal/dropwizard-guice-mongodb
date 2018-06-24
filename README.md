@@ -13,6 +13,7 @@ The example is a simple RESTful interface to easily manage a task planner.
 - [FongoDB](https://github.com/fakemongo/fongo) is an in-memory java implementation of MongoDB, intercepting call to the standard mongo-java-driver
 - API documentation provided by [swagger.io](http://swagger.io//) and [swagger UI](http://swagger.io/swagger-ui/)
 - [Docker](https://www.docker.com/) as the containerisation solution
+- using [Hate](https://github.com/blackdoor/hate) library as HATEOAS with HAL implementation
 
 How to start the DropwizardGuice application
 ---
