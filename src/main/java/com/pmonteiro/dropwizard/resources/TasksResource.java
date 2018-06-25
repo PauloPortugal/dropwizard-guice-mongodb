@@ -11,7 +11,10 @@ import io.swagger.annotations.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.CREATED;
@@ -37,7 +40,10 @@ public class TasksResource {
             notes = "Returns all the tasks save on the database")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "", responseContainer = "List", response = Task.class)})
     public Response getTasks() {
-        return ok().entity(ImmutableMap.of("tasks", dao.find(Task.class))).build();
+        Optional<List> tasks = dao.find(Task.class)
+                .map(this::getTasksWithHypermediaLinks);
+
+        return ok().entity(ImmutableMap.of("tasks", tasks)).build();
     }
 
     @GET
@@ -51,7 +57,7 @@ public class TasksResource {
         @ApiResponse(code = 404, message = "Not Found")})
     public Response getTask(@ApiParam(value = "taskId", example = "9781337a-a4f6-4ee9-b7b2-2c001d8d457d") @PathParam("taskId") UUID id) {
         return dao.findById(id)
-                .map(task -> ok().entity(task).build())
+                .map(task -> ok().entity(task.asEmbedded()).build())
                 .orElse(status(NOT_FOUND.getStatusCode()).build());
     }
 
@@ -66,7 +72,7 @@ public class TasksResource {
     public Response create(@ApiParam(value = "payload", required = true) TaskApi taskApi) {
         Task task = new Task(taskApi);
         dao.persist(task);
-        return status(CREATED).entity(task).build();
+        return status(CREATED).entity(task.asEmbedded()).build();
     }
 
     @PUT
@@ -85,7 +91,7 @@ public class TasksResource {
         return dao.findById(id)
                 .map(task -> {
                     task.setDescription(payload.getDescription());
-                    return ok().entity(task).build();
+                    return ok().entity(task.asEmbedded()).build();
                 })
                 .orElse(status(NOT_FOUND.getStatusCode()).build());
     }
@@ -109,5 +115,11 @@ public class TasksResource {
                     return noContent().build();
                 })
                 .orElse(status(NOT_FOUND.getStatusCode()).build());
+    }
+
+    private List getTasksWithHypermediaLinks(List<Task> list) {
+        return list.stream()
+                .map(task -> task.asEmbedded())
+                .collect(Collectors.toList());
     }
 }

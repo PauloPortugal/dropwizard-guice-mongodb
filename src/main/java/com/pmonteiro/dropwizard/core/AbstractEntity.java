@@ -3,7 +3,10 @@ package com.pmonteiro.dropwizard.core;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.ws.rs.WebApplicationException;
 import java.io.Serializable;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -17,5 +20,13 @@ abstract class AbstractEntity implements Serializable {
 
     public UUID getId() {
         return id;
+    }
+
+    protected URI location(String uri) {
+        try {
+            return new URI(uri);
+        } catch (URISyntaxException e) {
+            throw new WebApplicationException("Could not create URI for task " + getId(), e);
+        }
     }
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Transactional
-public class TaskDAO extends BaseDAO {
+public class TaskDAO extends BaseDAO<Task> {
 
     @Inject
     public TaskDAO(final Provider<EntityManager> entityManager) {
